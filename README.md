@@ -32,7 +32,7 @@ Make sure all of the tests you add are passed by the classes, then make a commit
 
 ## Authors
 * [Sergio Abreu García](https://github.com/SAGGameDeveloper)
-* [Lluís Cañedas Salesa](https://github.com/LluisCS)
+* [Lluís Cañellas Salesa](https://github.com/LluisCS)
 
 ## License
 This repository is under the [MIT license](https://github.com/SAGGameDeveloper/testing/blob/master/LICENSE).
