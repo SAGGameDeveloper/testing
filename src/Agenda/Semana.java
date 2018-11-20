@@ -70,7 +70,7 @@ public class Semana {
 	    	
 	    	String disponible;
 	    	for(int dia = 1; dia < DIAS_RESERVABLES; dia++) {
-	    		int hueco=dias[dia - 1].buscaSlot(duracion);
+	    		int hueco=dias[dia - 1].buscaSlot(duracion); //testPrimerHuecoMartes
 	    		if (hueco!=-1)
 	             { disponible= diaSemana(dia) + " " + hueco + ":00";
 	    			return disponible;

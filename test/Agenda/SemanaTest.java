@@ -128,7 +128,7 @@ public class SemanaTest {
 	
 	@Test
 	public void testPrimerHuecoMartesLargo() {
-		Cita cita = new Cita("Neur�logo", 9);
+		Cita cita = new Cita("Neur�logo", 8);
 		semana.getDia(1).asignarCita(10, cita);
 		assertEquals("Martes 9:00", semana.primerHueco(2));
 	}
@@ -139,5 +139,25 @@ public class SemanaTest {
 		for(int i = 1; i < Semana.DIAS_RESERVABLES; i++)
 			semana.getDia(i).asignarCita(9, cita);
 		assertEquals("No hay disponibilidad", semana.primerHueco(1));
+	}
+	
+	@Test
+	public void testMostrarCitaLunes() {
+		Cita cita = new Cita("Neur�logo", 8);
+		semana.getDia(1).asignarCita(9, cita);
+		assertEquals("9:00 Neur�logo", semana.mostrarCita(9, 1));
+	}
+	
+	@Test
+	public void testMostrarCitaDiaNoExiste() {
+		
+		assertEquals("No existe", semana.mostrarCita(9, 1));
+	}
+	
+	@Test
+	public void testMostrarCitaLarga() {
+		Cita cita = new Cita("Neur�logo", 5);
+		semana.getDia(3).asignarCita(10, cita);
+		assertEquals("14:00 Neur�logo", semana.mostrarCita(14, 3));
 	}
 }
