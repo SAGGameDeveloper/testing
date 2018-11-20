@@ -8,23 +8,24 @@ public class SemanaBreak {
 	
 	    public static final int DIAS_RESERVABLES = 5;
 	    
-	    // Numero de la semana en el año (0-52).
+	    // Numero de la semana en el año (1-52).
 	    
 	    private final int numeroSemana;
 	    private final DiaBreak[] dias;
 
 	    /**
-	      * @param numeroSemana (0-52).
+	      * @param numeroSemana (1-52).
 	     */
 	    public SemanaBreak(int numeroSemana) throws DatoException
 	    {
+	    	
 	    	if (numeroSemana <= 0 || numeroSemana > 52) {
 				
-				throw new DatoException("La semana debe tomar valor entre 0 y 52");
+				throw new DatoException("La semana debe tomar valor entre 1 y 52");
 			}
 	        this.numeroSemana = numeroSemana;
 	        dias = new DiaBreak[DIAS_RESERVABLES];
-	        int diaDelAnio = (numeroSemana) * 7 + 1;
+	        int diaDelAnio = (numeroSemana - 1) * 7 + 1; //testGetDiaUno
 	        for(int dia = 0; dia < DIAS_RESERVABLES; dia++) {
 	            dias[dia] = new DiaBreak(diaDelAnio);
 	            diaDelAnio++;
@@ -49,15 +50,15 @@ public class SemanaBreak {
 	    public DiaBreak getDia(int diaSemana)
 	    {
 	        if(diaSemana >= 1 && diaSemana <= DIAS_RESERVABLES) {
-	            return dias[diaSemana];
+	            return dias[diaSemana - 1]; //testGetDiaUno
 	        }
 	        else {
-	            return null;
+	            return null; 
 	        }
 	    }
 
 	    /**
-	     * @return Numero de semana (0-52).
+	     * @return Numero de semana (1-52).
 	     */
 	    public int getNumeroSemana()
 	    {
@@ -69,7 +70,7 @@ public class SemanaBreak {
 	    	
 	    	String disponible;
 	    	for(int dia = 1; dia < DIAS_RESERVABLES; dia++) {
-	    		int hueco=dias[dia].buscaSlot(duracion);
+	    		int hueco=dias[dia - 1].buscaSlot(duracion);
 	    		if (hueco!=-1)
 	             { disponible= diaSemana(dia) + " " + hueco + ":00";
 	    			return disponible;
@@ -85,22 +86,23 @@ public class SemanaBreak {
 	    public String diaSemana(int dia) {
 	    
 	    	String diaNombre;
-	    	
+	    	//testDiaSemanaLunes
 	    	switch(dia) {
-	    	 case 0: 
+	    	 case 1: 
 	    		 diaNombre="Lunes";
 	    	     break;
-	    	 case 1: 
+	    	 case 2: 
 	    		 diaNombre="Martes";
 	    	     break;
-	    	 case 2: 
+	    	 case 3: 
 	    		 diaNombre="Miercoles";
 	    	     break;
-	    	 case 3: 
+	    	 case 4: 
 	    		 diaNombre="Jueves";
 	    	     break;
-	    	 case 4: 
+	    	 case 5: 
 	    		 diaNombre="Viernes";
+	    		 break; //testDiaSemanaViernes
 	    	 default: 
 	    		 diaNombre="No citable";
 	    	     break;
