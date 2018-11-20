@@ -7,13 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class DiaBreakTest {
-	private DiaBreak dia;
+public class DiaTest {
+	private Dia dia;
 	
 	@Before
 	public void setUp() {
 		try {
-			dia = new DiaBreak(1);
+			dia = new Dia(1);
 		} catch (DatoException exception) {
 			fail("No se ha podido crear el día número 1");
 		}
@@ -24,7 +24,7 @@ public class DiaBreakTest {
 	@Test
 	public void testConstructorLowerThanOne() {
 		try {
-			dia = new DiaBreak(0);
+			dia = new Dia(0);
 			fail("Se ha podido crear un d�a menor que 1");
 		} catch (DatoException exception) {
 			
@@ -34,7 +34,7 @@ public class DiaBreakTest {
 	@Test
 	public void testConstructorGreaterThan365() {
 		try {
-			dia = new DiaBreak(366);
+			dia = new Dia(366);
 			fail("Se ha podido crear un d�a mayor de 365");
 		} catch (DatoException exception) {
 			
@@ -44,7 +44,7 @@ public class DiaBreakTest {
 	@Test
 	public void testConstructorOne() {
 		try {
-			dia = new DiaBreak(1);
+			dia = new Dia(1);
 		} catch (DatoException exception) {
 			fail("No se ha podido crear el d�a 1");
 		}
@@ -53,7 +53,7 @@ public class DiaBreakTest {
 	@Test
 	public void testConstructor365() {
 		try {
-			dia = new DiaBreak(365);
+			dia = new Dia(365);
 		} catch (DatoException exception) {
 			fail("No se ha podido crear el d�a 365");
 		}
@@ -68,7 +68,7 @@ public class DiaBreakTest {
 	
 	@Test
 	public void testBuscaSlotLleno() {
-		dia.asignarCita(dia.PRIMERA_CITA, new Cita("Cita9", dia.MAX_CITAS_POR_DIA));
+		dia.asignarCita(Dia.PRIMERA_CITA, new Cita("Cita9", Dia.MAX_CITAS_POR_DIA));
 		assertEquals(-1, dia.buscaSlot(1));
 	}
 	
@@ -108,84 +108,84 @@ public class DiaBreakTest {
 	
 	@Test
 	public void testValidaHoraLimiteInferior() {
-		assertEquals(true, dia.validaHora(dia.PRIMERA_CITA));
-		assertEquals(false, dia.validaHora(dia.PRIMERA_CITA - 1));
+		assertEquals(true, dia.validaHora(Dia.PRIMERA_CITA));
+		assertEquals(false, dia.validaHora(Dia.PRIMERA_CITA - 1));
 	}
 	
 	@Test
 	public void testValidaHoraLimiteSuperior() {
-		assertEquals(true, dia.validaHora(dia.ULTIMA_CITA));
-		assertEquals(false, dia.validaHora(dia.ULTIMA_CITA + 1));
+		assertEquals(true, dia.validaHora(Dia.ULTIMA_CITA));
+		assertEquals(false, dia.validaHora(Dia.ULTIMA_CITA + 1));
 	}
 	
 	@Test
 	public void testValidaHoraEntreLimites() {
-		assertEquals(true, dia.validaHora(dia.PRIMERA_CITA + 1));
-		assertEquals(true, dia.validaHora(dia.ULTIMA_CITA - 1));
+		assertEquals(true, dia.validaHora(Dia.PRIMERA_CITA + 1));
+		assertEquals(true, dia.validaHora(Dia.ULTIMA_CITA - 1));
 	}
 	
 	// asignarCita
 	
 	@Test
 	public void testAsignarCitaPrimeraHora() {
-		assertEquals(true, dia.asignarCita(dia.PRIMERA_CITA, new Cita("Primera cita", 1)));		
+		assertEquals(true, dia.asignarCita(Dia.PRIMERA_CITA, new Cita("Primera cita", 1)));		
 	}
 	
 	@Test
 	public void testAsignarCitaUltimaHora() {
-		assertEquals(true, dia.asignarCita(dia.ULTIMA_CITA, new Cita("Ultima cita", 1)));		
+		assertEquals(true, dia.asignarCita(Dia.ULTIMA_CITA, new Cita("Ultima cita", 1)));		
 	}
 	
 	@Test
 	public void testAsignarCitaHuecoOcupado() {
-		dia.asignarCita(dia.PRIMERA_CITA, new Cita("Cita", 5));
-		assertEquals(false, dia.asignarCita(dia.PRIMERA_CITA, new Cita("Esta cita no cabe", 2)));		
+		dia.asignarCita(Dia.PRIMERA_CITA, new Cita("Cita", 5));
+		assertEquals(false, dia.asignarCita(Dia.PRIMERA_CITA, new Cita("Esta cita no cabe", 2)));		
 	}
 	
 	@Test
 	public void testAsignarCitasConsecutivas() {
-		assertEquals(true, dia.asignarCita(dia.PRIMERA_CITA, new Cita("Primera cita", 2)));
-		assertEquals(true, dia.asignarCita(dia.PRIMERA_CITA + 2, new Cita("Segunda cita", 4)));		
+		assertEquals(true, dia.asignarCita(Dia.PRIMERA_CITA, new Cita("Primera cita", 2)));
+		assertEquals(true, dia.asignarCita(Dia.PRIMERA_CITA + 2, new Cita("Segunda cita", 4)));		
 	}
 	
 	@Test
 	public void testAsignarCitaSolapada() {
-		dia.asignarCita(dia.PRIMERA_CITA + 2, new Cita("Primera cita", 3));
+		dia.asignarCita(Dia.PRIMERA_CITA + 2, new Cita("Primera cita", 3));
 		
-		assertEquals(false, dia.asignarCita(dia.PRIMERA_CITA, new Cita("Cita solapada por debajo", 3)));		
-		assertEquals(false, dia.asignarCita(dia.PRIMERA_CITA + 4 , new Cita("Cita solapada por arriba", 1)));
+		assertEquals(false, dia.asignarCita(Dia.PRIMERA_CITA, new Cita("Cita solapada por debajo", 3)));		
+		assertEquals(false, dia.asignarCita(Dia.PRIMERA_CITA + 4 , new Cita("Cita solapada por arriba", 1)));
 	}
 	
 	// huecoLibre
 	
 	@Test
 	public void testHuecoLibrePrimeraHora() {
-		assertEquals(true, dia.huecoLibre(dia.PRIMERA_CITA, 1));	
+		assertEquals(true, dia.huecoLibre(Dia.PRIMERA_CITA, 1));	
 	}
 	
 	@Test
 	public void testHuecoLibreUltimaHora() {
-		assertEquals(true, dia.huecoLibre(dia.ULTIMA_CITA, 1));	
+		assertEquals(true, dia.huecoLibre(Dia.ULTIMA_CITA, 1));	
 	}
 	
 	@Test
 	public void testHuecoLibreDemasiadoGrande() {
-		assertEquals(false, dia.huecoLibre(dia.PRIMERA_CITA, 20));
+		assertEquals(false, dia.huecoLibre(Dia.PRIMERA_CITA, 20));
 	}
 	
 	@Test
 	public void testHuecoLibreOcupado() {
-		dia.asignarCita(dia.PRIMERA_CITA, new Cita("Primera cita", 3));
+		dia.asignarCita(Dia.PRIMERA_CITA, new Cita("Primera cita", 3));
 		
-		assertEquals(false, dia.huecoLibre(dia.PRIMERA_CITA+1, 2));
+		assertEquals(false, dia.huecoLibre(Dia.PRIMERA_CITA+1, 2));
 	}
 	
 	@Test
 	public void testHuecoLibreSolapado() {
-		dia.asignarCita(dia.PRIMERA_CITA + 2, new Cita("Cita", 3));
+		dia.asignarCita(Dia.PRIMERA_CITA + 2, new Cita("Cita", 3));
 		
-		assertEquals(false, dia.huecoLibre(dia.PRIMERA_CITA, 3));
-		assertEquals(false, dia.huecoLibre(dia.PRIMERA_CITA + 4, 2));
+		assertEquals(false, dia.huecoLibre(Dia.PRIMERA_CITA, 3));
+		assertEquals(false, dia.huecoLibre(Dia.PRIMERA_CITA + 4, 2));
 	}
 	
 	// getCita
@@ -194,38 +194,38 @@ public class DiaBreakTest {
 	public void testGetCitaPrimeraHora() {
 		Cita cita = new Cita("Primera cita", 1);
 		
-		dia.asignarCita(dia.PRIMERA_CITA, cita);
+		dia.asignarCita(Dia.PRIMERA_CITA, cita);
 		
-		assertEquals(cita, dia.getCita(dia.PRIMERA_CITA));
+		assertEquals(cita, dia.getCita(Dia.PRIMERA_CITA));
 	}
 	
 	@Test
 	public void testGetCitaUltimaHora() {
 		Cita cita = new Cita("Ultima cita", 1);
 		
-		dia.asignarCita(dia.ULTIMA_CITA, cita);
+		dia.asignarCita(Dia.ULTIMA_CITA, cita);
 		
-		assertEquals(cita, dia.getCita(dia.ULTIMA_CITA));
+		assertEquals(cita, dia.getCita(Dia.ULTIMA_CITA));
 	}
 	
 	@Test
 	public void testGetCitaFueraLimites() {	
-		assertEquals(null, dia.getCita(dia.PRIMERA_CITA - 1));
-		assertEquals(null, dia.getCita(dia.ULTIMA_CITA + 1));
+		assertEquals(null, dia.getCita(Dia.PRIMERA_CITA - 1));
+		assertEquals(null, dia.getCita(Dia.ULTIMA_CITA + 1));
 	}
 	
 	@Test
 	public void testGetCitaVacia() {	
-		assertEquals(null, dia.getCita(dia.PRIMERA_CITA + 2));
+		assertEquals(null, dia.getCita(Dia.PRIMERA_CITA + 2));
 	}
 	
 	@Test
 	public void testGetCitaLarga() {	
 		Cita cita = new Cita("Ultima cita", 5);
 		
-		dia.asignarCita(dia.PRIMERA_CITA, cita);
+		dia.asignarCita(Dia.PRIMERA_CITA, cita);
 		
-		assertEquals(cita, dia.getCita(dia.PRIMERA_CITA + 4));
+		assertEquals(cita, dia.getCita(Dia.PRIMERA_CITA + 4));
 	}
 	
 	// muestraCita
@@ -234,9 +234,9 @@ public class DiaBreakTest {
 	public void testMuestraCitaDescripcionVacia() {		
 		Cita cita = new Cita("", 1);
 		
-		dia.asignarCita(dia.PRIMERA_CITA, cita);
+		dia.asignarCita(Dia.PRIMERA_CITA, cita);
 		
-		assertEquals(dia.PRIMERA_CITA+":00 ", dia.muestraCita(dia.PRIMERA_CITA));
+		assertEquals(Dia.PRIMERA_CITA+":00 ", dia.muestraCita(Dia.PRIMERA_CITA));
 	}
 	
 	@Test
@@ -244,19 +244,19 @@ public class DiaBreakTest {
 		String descripcion = "Descripción";
 		Cita cita = new Cita(descripcion, 4);
 		
-		dia.asignarCita(dia.PRIMERA_CITA, cita);
+		dia.asignarCita(Dia.PRIMERA_CITA, cita);
 		
-		assertEquals((dia.PRIMERA_CITA+3) + ":00 " + descripcion, dia.muestraCita(dia.PRIMERA_CITA + 3));
+		assertEquals((Dia.PRIMERA_CITA+3) + ":00 " + descripcion, dia.muestraCita(Dia.PRIMERA_CITA + 3));
 	}
 	
 	@Test
 	public void testMuestraCitaInexistente() {		
-		assertEquals("No existe", dia.muestraCita(dia.PRIMERA_CITA + 2));
+		assertEquals("No existe", dia.muestraCita(Dia.PRIMERA_CITA + 2));
 	}
 	
 	@Test
 	public void testMuestraCitaHoraNoValida() {		
-		assertEquals("Hora no valida", dia.muestraCita(dia.PRIMERA_CITA - 2));
+		assertEquals("Hora no valida", dia.muestraCita(Dia.PRIMERA_CITA - 2));
 	}
 	
 }

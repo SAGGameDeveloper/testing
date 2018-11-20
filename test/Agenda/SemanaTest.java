@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SemanaBreakTest {
-	private SemanaBreak semana;
+public class SemanaTest {
+	private Semana semana;
 
 	@Before
 	public void setUp() {
 		try {
-			semana = new SemanaBreak(1);
+			semana = new Semana(1);
 		} catch (DatoException exception) {
 		}
 	}
@@ -19,7 +19,7 @@ public class SemanaBreakTest {
 	@Test
 	public void testConstructorLowerThanOne() {
 		try {
-			semana = new SemanaBreak(0);
+			semana = new Semana(0);
 			fail("Se ha podido crear una semana menor que 1");
 		} catch (DatoException exception) {
 			
@@ -29,7 +29,7 @@ public class SemanaBreakTest {
 	@Test
 	public void testConstructorGreaterThan53() {
 		try {
-			semana = new SemanaBreak(53);
+			semana = new Semana(53);
 			fail("Se ha podido crear una semana mayor de 53");
 		} catch (DatoException exception) {
 			
@@ -39,7 +39,7 @@ public class SemanaBreakTest {
 	@Test
 	public void testConstructorOne() {
 		try {
-			semana = new SemanaBreak(1);
+			semana = new Semana(1);
 		} catch (DatoException exception) {
 			fail("No se ha podido crear la semana 1");
 		}
@@ -48,7 +48,7 @@ public class SemanaBreakTest {
 	@Test
 	public void testConstructor52() {
 		try {
-			semana = new SemanaBreak(52);
+			semana = new Semana(52);
 		} catch (DatoException exception) {
 			fail("No se ha podido crear el semana 52");
 		}
@@ -62,7 +62,7 @@ public class SemanaBreakTest {
 	@Test
 	public void testGetNumeroSemanaGrande() {
 		try {
-			semana = new SemanaBreak(11);
+			semana = new Semana(11);
 		}
 		catch (DatoException exception){}
 		assertEquals(11, semana.getNumeroSemana());
@@ -91,7 +91,7 @@ public class SemanaBreakTest {
 	@Test
 	public void testGetDiaTreinta() {
 		try {
-			semana = new SemanaBreak(5);
+			semana = new Semana(5);
 		}
 		catch (DatoException exception){}
 		assertEquals(30, semana.getDia(2).getDiaNumero());
@@ -114,29 +114,29 @@ public class SemanaBreakTest {
 	
 	@Test
 	public void testPrimerHuecoMartes() {
-		Cita cita = new Cita("Neurólogo", 9);
+		Cita cita = new Cita("Neurï¿½logo", 9);
 		semana.getDia(1).asignarCita(9, cita);
 		assertEquals("Martes 9:00", semana.primerHueco(1));
 	}
 	
 	@Test
 	public void testPrimerHuecoLunes10() {
-		Cita cita = new Cita("Neurólogo", 1);
+		Cita cita = new Cita("Neurï¿½logo", 1);
 		semana.getDia(1).asignarCita(9, cita);
 		assertEquals("Lunes 10:00", semana.primerHueco(1));
 	}
 	
 	@Test
 	public void testPrimerHuecoMartesLargo() {
-		Cita cita = new Cita("Neurólogo", 9);
+		Cita cita = new Cita("Neurï¿½logo", 9);
 		semana.getDia(1).asignarCita(10, cita);
 		assertEquals("Martes 9:00", semana.primerHueco(2));
 	}
 	
 	@Test
 	public void testPrimerHuecoLleno() {
-		Cita cita = new Cita("Neurólogo", 9);
-		for(int i = 1; i < SemanaBreak.DIAS_RESERVABLES; i++)
+		Cita cita = new Cita("Neurï¿½logo", 9);
+		for(int i = 1; i < Semana.DIAS_RESERVABLES; i++)
 			semana.getDia(i).asignarCita(9, cita);
 		assertEquals("No hay disponibilidad", semana.primerHueco(1));
 	}

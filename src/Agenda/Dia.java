@@ -1,6 +1,6 @@
 package Agenda;
 
-public class DiaBreak {
+public class Dia {
 
 	    public static final int PRIMERA_CITA = 9;
 	    public static final int ULTIMA_CITA = 17;
@@ -13,7 +13,7 @@ public class DiaBreak {
 	    /**
 	     * @param diaNumero numero del dia del a�o (1-365), si es correcto
 	     */
-	    public DiaBreak(int diaNumero) throws DatoException{
+	    public Dia(int diaNumero) throws DatoException{
 	    
 	    	if (diaNumero < 1 || diaNumero > 365) { //testConstructor365 y testConstructorLowerThanOne
 	    		throw new DatoException("La semana debe tomar valor entre 1 y 365");

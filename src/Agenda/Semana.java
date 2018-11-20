@@ -2,21 +2,21 @@ package Agenda;
 
 
 
-public class SemanaBreak {
+public class Semana {
 
 	    // Representa una semana de lunes a viernes.
 	
 	    public static final int DIAS_RESERVABLES = 5;
 	    
-	    // Numero de la semana en el año (1-52).
+	    // Numero de la semana en el aï¿½o (1-52).
 	    
 	    private final int numeroSemana;
-	    private final DiaBreak[] dias;
+	    private final Dia[] dias;
 
 	    /**
 	      * @param numeroSemana (1-52).
 	     */
-	    public SemanaBreak(int numeroSemana) throws DatoException
+	    public Semana(int numeroSemana) throws DatoException
 	    {
 	    	
 	    	if (numeroSemana <= 0 || numeroSemana > 52) {
@@ -24,10 +24,10 @@ public class SemanaBreak {
 				throw new DatoException("La semana debe tomar valor entre 1 y 52");
 			}
 	        this.numeroSemana = numeroSemana;
-	        dias = new DiaBreak[DIAS_RESERVABLES];
+	        dias = new Dia[DIAS_RESERVABLES];
 	        int diaDelAnio = (numeroSemana - 1) * 7 + 1; //testGetDiaUno
 	        for(int dia = 0; dia < DIAS_RESERVABLES; dia++) {
-	            dias[dia] = new DiaBreak(diaDelAnio);
+	            dias[dia] = new Dia(diaDelAnio);
 	            diaDelAnio++;
 	        }
 	    }
@@ -47,7 +47,7 @@ public class SemanaBreak {
 	     * @return El Dia asociado, o null si dia de la semana
 	     *         esta fuera de rango.
 	     */
-	    public DiaBreak getDia(int diaSemana)
+	    public Dia getDia(int diaSemana)
 	    {
 	        if(diaSemana >= 1 && diaSemana <= DIAS_RESERVABLES) {
 	            return dias[diaSemana - 1]; //testGetDiaUno
