@@ -4,19 +4,18 @@ public class DiaBreak {
 
 	    public static final int PRIMERA_CITA = 9;
 	    public static final int ULTIMA_CITA = 17;
-	    public static final int MAX_CITAS_POR_DIA =	ULTIMA_CITA - PRIMERA_CITA;
+	    public static final int MAX_CITAS_POR_DIA =	ULTIMA_CITA - PRIMERA_CITA + 1; // testAsignarCitaUltimaHora
 	    
 
 	    private int diaNumero;
 	    private Cita[] citas;
 
 	    /**
-	     * @param diaNumero numero del dia del año (1-365), si es correcto
+	     * @param diaNumero numero del dia del aï¿½o (1-365), si es correcto
 	     */
 	    public DiaBreak(int diaNumero) throws DatoException{
 	    
-	    	if (diaNumero < 1 || diaNumero > 365){ //testConstructor365 y testConstructorLowerThanOne
-	    		
+	    	if (diaNumero < 1 || diaNumero > 365) { //testConstructor365 y testConstructorLowerThanOne
 	    		throw new DatoException("La semana debe tomar valor entre 1 y 365");
 	    	}
 	        this.diaNumero = diaNumero;
@@ -26,7 +25,7 @@ public class DiaBreak {
 	    /**
 	     * Busca hueco para una cita
 	     * @param cita 
-	     * @return Hora más temprana para adjudicar la cita
+	     * @return Hora mï¿½s temprana para adjudicar la cita
 	     *         Devuelve -1 si no es posible encontrar hueco
 	     */ 
 	    public int buscaSlot(int duracion)
@@ -73,7 +72,7 @@ public class DiaBreak {
 	    {
 	        if(validaHora(hora) && huecoLibre(hora, cita.getDuracion())) {
 	            int horaIni = hora - PRIMERA_CITA;
-	            if(citas[this.diaNumero] == null) {
+	            if(citas[horaIni] == null) { // testBuscaSlotHuecoInsuficiente
 	                int duracion = cita.getDuracion();
 	                for(int i = 0; i < duracion; i++) {
 	                    citas[horaIni + i] = cita;
@@ -105,7 +104,7 @@ public class DiaBreak {
 	    }
 
 	    /**
-	     * String que devuelve la descripción de la cita solicitada .
+	     * String que devuelve la descripciï¿½n de la cita solicitada .
 	     */
 	    
 	    public String muestraCita(int hora){      
@@ -121,12 +120,12 @@ public class DiaBreak {
 	            }
 	        }
 	    	else {
-                return "Hora valida";
+                return "Hora no valida"; // testMuestraCitaHoraNoValida
             }
 	    }
 	    
 	    /**
-	     * @return Numero de dia dentro del año (1-366).
+	     * @return Numero de dia dentro del aï¿½o (1-366).
 	     */
 	    public int getDiaNumero()
 	    {
@@ -144,11 +143,12 @@ public class DiaBreak {
 	    
 	    public boolean huecoLibre(int hora, int duracion) {	    	
 	    	int horaIni = hora - PRIMERA_CITA;
-	            for(int slot = horaIni; duracion > 0 &&
-	            		slot < MAX_CITAS_POR_DIA && citas[slot] == null ; slot++) {
-	            	duracion--;
-	          	}
+	    	
+            for(int slot = horaIni; duracion > 0 &&
+        		slot < MAX_CITAS_POR_DIA && citas[slot] == null ; slot++) {
+            	duracion--;
+          	}
    
-              return duracion == 0;
-	    }	    
+            return duracion == 0;
+	    }
 }
