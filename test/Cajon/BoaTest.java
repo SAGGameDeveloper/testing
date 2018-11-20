@@ -1,9 +1,10 @@
 package Cajon;
 
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+
 
 class BoaTest {
 

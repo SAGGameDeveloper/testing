@@ -22,6 +22,7 @@ public class Divisa {
 	 * @return valor en la divisa universal
 	 */
 	public int valorUniversal(int cantidad) {
+		return cantidad;
 			
 	}
 
@@ -29,6 +30,7 @@ public class Divisa {
 	 * @return nombre de la divisa
 	 */
 	public String getName() {
+		return nombre;
 		
 	}
 	
@@ -37,6 +39,7 @@ public class Divisa {
 	 * @return rate de la divisa
 	 */
 	public Double getRate() {
+		return rate;
 		
 	}
 	
@@ -54,6 +57,7 @@ public class Divisa {
 	 * @param othercurrency divisa origen
 	*/
 	public int valorEnEstaDivisa(int cantidad, Divisa otraDivisa) {
+		return cantidad;
 		
 					
 	}

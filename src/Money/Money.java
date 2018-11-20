@@ -19,6 +19,7 @@ public class Money implements Comparable {
 	 * @return Cantidad.
 	 */
 	public int getCantidad() {
+		return cantidad;
 		
 	}
 	
@@ -27,6 +28,7 @@ public class Money implements Comparable {
 	 * @return Divisa asociada a esta cantidad
 	 */
 	public Divisa getDivisa() {
+		return divisa;
 		
 	}
 	
@@ -37,6 +39,7 @@ public class Money implements Comparable {
 	 *  @return String con información de la moneda.
 	 */
 	public String toString() {
+		return null;
 		
 	}
 	
@@ -45,6 +48,7 @@ public class Money implements Comparable {
 	 * @return Valor universal de la cantidad
 	 */
 	public int valorUniversal() {
+		return cantidad;
 		
 	}
 	
@@ -54,6 +58,7 @@ public class Money implements Comparable {
 	 * @return Boolean indicando equivalencia
 	 */
 	public Boolean equals(Money otra) {
+		return null;
 		
 	}
 	
@@ -63,6 +68,7 @@ public class Money implements Comparable {
 	 * @return Un nuevo objeto Money con la divisa del actual, y la cantidad acumulada con el importe del objeto Money recibido.
 	 **/
 	public Money add(Money otra) {
+		return otra;
 		
 	}
 
@@ -72,6 +78,7 @@ public class Money implements Comparable {
 	 * @return True si cantidad es cero, false e.o.c.
 	 */
 	public Boolean isZero() {
+		return null;
 		
 
 	}
@@ -80,6 +87,7 @@ public class Money implements Comparable {
 	 * @return Un nuevo objeto Money con la cantidad en negativo
 	 */
 	public Money negate() {
+		return null;
 	
 	}
 	
@@ -90,6 +98,7 @@ public class Money implements Comparable {
 	 * Un entero positivo si el objeto actual tiene más valor que el recibido
 	 */
 	public int compareTo(Object otra) {
+		return cantidad;
 			
 		
 	}
