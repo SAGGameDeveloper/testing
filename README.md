@@ -31,7 +31,7 @@ If you want to add new tests to existent classes/methods, you only need to add t
 Make sure all of the tests you add are passed by the classes, then make a commit with one of the following descriptions depending on your changes: `Added name_of_test_1, name_of_test_2 to test_class_name` `Implemented new functionality name_of_the_new_class_1, name_of_the_new_class_2`.
 
 ## Authors
-* [Sergio Abreu García](https://github.com/SAGGameDeveloper)
+* [Sergio Abreu García](https://sag-dev.com)
 * [Lluís Cañellas Salesa](https://github.com/LluisCS)
 
 ## License
